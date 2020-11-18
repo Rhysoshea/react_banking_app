@@ -1,3 +1,11 @@
+The below commands for starting the project are handled by Docker Compose
+
+### `docker-compose up`
+
+Downloads the dependencies and runs the app in development mode with `yarn start`
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
