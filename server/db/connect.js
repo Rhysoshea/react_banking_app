@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-// const fs = require('fs');
+const fs = require('fs');
 
 // const {
 //     MYSQL_HOST: HOST,
@@ -19,7 +19,7 @@ const { Pool } = require('pg');
 
 
 // const pool = new Pool({
-//     host,
+//     // host,
 //     user,
 //     password,
 //     database,
@@ -29,11 +29,11 @@ const { Pool } = require('pg');
 const pool = new Pool({
     user: 'postgres',
     password: 'root',
-    host: 'localhost',
+    host: 'psql',
     port: 5432,
     database: 'bank_account'
 });
-console.log(pool);
+// console.log(pool);
 
 module.exports = { pool };
 
