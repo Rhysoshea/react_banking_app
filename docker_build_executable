@@ -1,0 +1,18 @@
+#!/bin/bash                                                                     
+imageName=banking_app:latest
+containerName=banking_container
+
+docker build -t $imageName -f Dockerfile  .
+
+echo Delete old container...
+docker rm -f $containerName
+
+# -v specifies a volume                                                         
+# --mount the directory to be able to edit files without rebuilding the image   
+echo Run new container...
+# docker run -d -p 5000:5000 -it -v $(pwd):$(pwd) --name $containerName $imageName                                                                             
+docker run -d -p 5000:5000 -it --mount "type=bind,source=$(pwd),target=/fullstack-banking-app" --name $containerName $imageName
+
+
+
+
