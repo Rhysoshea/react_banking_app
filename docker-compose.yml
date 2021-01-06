@@ -16,6 +16,8 @@ services:
     ports:
       - 3000:3000
     working_dir: /root/fullstack-banking-app
+    depends_on: 
+      - psql
     volumes:
       - ./:/root/fullstack-banking-app:cached
   
@@ -44,11 +46,15 @@ services:
   psql:
     image: postgres
     ports:
-      - "5432:5432"
+      - "5433:5433"
+    # command: sh -c "su - postgres && psql CREATE DATABASE bank_account;"
     environment: 
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
       POSTGRES_DB: bank_account
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
 
-volumes:
-    banking-app-psql-data:
+# volumes:
+#     banking-app-psql-data:
+#       driver: local

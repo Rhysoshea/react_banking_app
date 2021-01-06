@@ -23,6 +23,7 @@ Router.post('/signup', async (req, res) => {
         ];
         const receivedFields = Object.keys(req.body);
         // returns error from common.js if invalid field is provided
+        console.log(receivedFields)
         const isInvalidFieldProvided = isInvalidField(
             receivedFields,
             validFieldsToUpdate

@@ -1,3 +1,7 @@
+CREATE DATABASE bank_account;
+
+\c bank_account;
+
 CREATE TABLE bank_user(
   userid BIGSERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(32) NOT NULL,
