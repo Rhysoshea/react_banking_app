@@ -1,5 +1,7 @@
-import { SIGN_IN, BASE_API_URL } from '../utils/constants';
+
 import axios from 'axios';
+import { SIGN_IN, BASE_API_URL } from '../utils/constants';
+import { getErrors } from './errors';
 
 export const signIn = (user) => ({
     type: SIGN_IN,
@@ -17,12 +19,12 @@ export const initiateLogin = (email, password) => {
             localStorage.setItem('user_token', user.token);
             dispatch(signIn(user));
         } catch (error) {
-            console.log('error');
+            console.log('error', error);
+            error.response && dispatch(getErrors(error.response.data));
         }
     };
 };
 
-// using the signup API to register a new user
 export const registerNewUser = (data) => {
     return async (dispatch) => {
         try {
@@ -30,6 +32,7 @@ export const registerNewUser = (data) => {
             return { success: true };
         } catch (error) {
             console.log('error', error);
+            error.response && dispatch(getErrors(error.response.data));
             return { success: false };
         }
     };

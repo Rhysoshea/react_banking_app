@@ -23,6 +23,7 @@ Router.post('/signup', async (req, res) => {
         ];
         const receivedFields = Object.keys(req.body);
         // returns error from common.js if invalid field is provided
+        console.log(receivedFields)
         const isInvalidFieldProvided = isInvalidField(
             receivedFields,
             validFieldsToUpdate
@@ -61,7 +62,7 @@ Router.post('/signup', async (req, res) => {
         res.status(201).send();
     } catch (error) {
         res.status(400).send({
-            signup_error: error //'Error while signing up..Try again later.'
+            signup_error: 'Error while signing up..Try again later.'
         });
     }
 });
