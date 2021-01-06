@@ -40,7 +40,6 @@ Router.post('/signup', async (req, res) => {
             'select count(*) as count from bank_user where email=$1',
             [email]
         );
-        console.log("HERE");
 
         const count = result.rows[0].count;
         if (count > 0) {
@@ -48,9 +47,7 @@ Router.post('/signup', async (req, res) => {
                 signup_error: 'User with this email address already exists.'
             });
         }
-        // 
         
-
         // bcryptjs library used for creating a secure password
         const hashedPassword = await bcrypt.hash(password, 8);
         // using $ for inserting values into postgres prevents SQL injection
@@ -58,6 +55,7 @@ Router.post('/signup', async (req, res) => {
             'insert into bank_user(first_name, last_name, email, password) values($1,$2,$3,$4)',
             [first_name, last_name, email, hashedPassword]
         );
+
         // if everything executes correctly, return creation 201 status
         res.status(201).send();
     } catch (error) {
